@@ -1,0 +1,153 @@
+/* Custom CSS */
+:root {
+    /* --text-color: var(--blue-900); */
+}
+
+/* Global */
+#header.image {
+  background-size: cover;
+  background-position: center;
+}
+
+.tabs button[role="tab"] {
+  padding: .75rem 1.5rem;
+  border-width: 2px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-bottom: 1px solid transparent;
+  letter-spacing: 0px;
+  font-size: 1.5rem;
+  font-weight: normal;
+  background-color: #ddd;
+}
+
+.tabs button[role="tab"][aria-selected="true"] {
+  border-width: 2.5px;
+  font-weight: 600;
+}
+
+/* Panels */
+
+.content, .TableContainer {
+  overflow: visible;
+}
+
+table.dashboard tbody {
+  box-shadow: rgba(3, 3, 3, 0.12) 0px 1px 2px 0px, rgba(3, 3, 3, 0.06) 0px 0px 2px 0px;
+  border: 0;
+}
+
+table.dashboard td.stopgap {
+  background: none;
+}
+
+div.title {
+  background: #ffffff;
+  letter-spacing: 0.6px;
+  border-bottom: 0;
+  margin-bottom: 0.3em;
+  box-shadow: rgba(3, 3, 3, 0.12) 0px 1px 2px 0px, rgba(3, 3, 3, 0.06) 0px 0px 2px 0px;
+}
+
+table.disk_status, table.array_status, table.share_status, table.plugins, table.tablesorter, .domain table, table#usb_devices_list, table.samba_mounts, table.usb_absent {
+  background-color: #ffffff;
+  box-shadow: rgba(3, 3, 3, 0.12) 0px 1px 2px 0px, rgba(3, 3, 3, 0.06) 0px 0px 2px 0px;
+}
+
+table.array_status td.line {
+  border-top: 0;
+}
+
+/* Tables */
+table.unraid thead tr:first-child > td, table.disk_status tbody tr, table.share_status tbody tr, table.plugins tbody tr, table.tablesorter tbody tr, .domain table tbody tr, table#usb_devices_list tbody tr, table.samba_mounts tbody tr, table.usb_absent tbody tr {
+  background-color: #ffffff !important;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+table#usb_devices_list tbody tr.toggle-disk {
+  border-bottom: 0;
+}
+
+table.disk_status:not(.dashboard) tbody tr:hover td, table.share_status:not(.dashboard) tbody tr:hover td {
+  background-color: rgba(46, 66, 106, 0.05) !important;
+}
+
+
+/* Buttons */
+
+input[type=button], input[type=reset], input[type=submit], button.mount, a.button,
+.sa-button-container button, .ui-dialog-buttonpane .ui-dialog-buttonset button, button.swal-button {
+  color: #ffa660;
+  letter-spacing: 0px;
+  border-radius: 3px;
+  font-size: 1.5rem;
+  font-weight: normal;
+  text-transform: none;
+  background: #ffffff;
+  padding: 6px 16px;
+  outline: 2px solid #ffa660;
+  outline-offset: -2px;
+  box-shadow: rgba(3, 3, 3, 0.12) 0px 1px 2px 0px, rgba(3, 3, 3, 0.06) 0px 0px 2px 0px;
+}
+
+input[name="#apply"], input[value="Apply"], input[value="应用"],
+.sa-confirm-button-container button, .ui-dialog-buttonset button:first-child, button.swal-button--next {
+  color: #ff6f00;
+  outline-color: #ff8425;
+}
+
+input[type=button]:hover, input[type=reset]:hover, input[type=submit]:hover, button.mount:hover, a.button:hover,
+.sa-button-container button:hover, .ui-dialog-buttonset button:hover, button:hover.swal-button, .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset button:hover {
+  color: #ffffff;
+  outline: 0;
+  background: linear-gradient(90deg, #e22828 0, #ff8c2f);
+}
+
+input[type=button]:active, input[type=reset]:active, input[type=submit]:active, button.mount:active, a.button:active,
+.sa-button-container button:active, .ui-dialog-buttonset button:active, button:active.swal-button, .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset button:active {
+  color: #ffffff;
+  outline: 0;
+  background: linear-gradient(90deg, #b11e1e 0, #ca6f24);
+}
+
+input[type=button][disabled], input[type=reset][disabled], input[type=submit][disabled], button.mount[disabled], a.button[disabled],
+.sa-button-container button[disabled], .ui-dialog-buttonset button[disabled], button[disabled].swal-button {
+  color: #909090;
+  background: transparent;
+  outline: 2px solid #909090;
+  opacity: 0.5;
+  box-shadow: none;
+}
+
+
+/* Settings / Tools */
+.PanelText {
+  width: 100px;
+  padding-bottom: 3px;
+  color: #212121;
+}
+
+div.Panel:hover .PanelText {
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+
+/* Users */
+
+div.user-list {
+  background-color: #ffffff;
+  border: 0;
+  border-radius: 0;
+  box-shadow: rgba(3, 3, 3, 0.12) 0px 1px 2px 0px, rgba(3, 3, 3, 0.06) 0px 0px 2px 0px;
+  padding: 20px 10px 0 10px;
+}
+
+div.user-list > a {
+  color: #212121;
+}
+
+div.user-list > a:hover {
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
