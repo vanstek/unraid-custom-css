@@ -21,4 +21,5 @@ https://github.com/WuSiYu/unraid-custom-css/raw/refs/heads/master/custom.css.plg
 
 I also provide my own CSS config as an example (see [example.css](./example.css)):
 
-<img src="screenshot.png" alt="screenshot">
+<img src="screenshot.png" alt="screenshot1">
+<img src="screenshot2.png" alt="screenshot2">
