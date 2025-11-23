@@ -1,12 +1,36 @@
 /* Custom CSS */
+/* Colors */
 :root {
-    /* --text-color: var(--blue-900); */
+  /* --text-color: var(--blue-900); */
+  --custom-bg: var(--theme-black--mild-gray-700, #ffffff);
 }
 
+
 /* Global */
+::-webkit-scrollbar {
+    width: 3px;
+}
+
 #header.image {
   background-size: cover;
   background-position: center;
+}
+
+#menu {
+  box-shadow: rgba(3, 3, 3, 0.5) 0px 0px 6px 0px;
+}
+
+#footer {
+  box-shadow: rgba(3, 3, 3, 0.1) 0px 0px 6px 0px;
+}
+
+.nav-item:after, .nav-user.show:after {
+  width: 98%;
+  left: 49%;
+  transform: translateX(-50%) translateY(10px);
+  border-left: 10px solid var(--header-background-color);
+  border-right: 10px solid var(--header-background-color);
+  box-sizing: border-box;
 }
 
 .tabs button[role="tab"] {
@@ -18,7 +42,7 @@
   letter-spacing: 0px;
   font-size: 1.5rem;
   font-weight: normal;
-  background-color: #ddd;
+  background-color: rgba(128, 128, 128, 0.3);
 }
 
 .tabs button[role="tab"][aria-selected="true"] {
@@ -26,32 +50,97 @@
   font-weight: 600;
 }
 
-/* Panels */
 
-.content, .TableContainer {
+/* Panels */
+.content {
+  padding: 2px;
+}
+
+.content:has(.dashboard), .content:has(#array_devices, #shareslist, #docker_containers, #plugin_list) > .TableContainer {
   overflow: visible;
 }
 
 table.dashboard tbody {
-  box-shadow: rgba(3, 3, 3, 0.12) 0px 1px 2px 0px, rgba(3, 3, 3, 0.06) 0px 0px 2px 0px;
+  background: var(--custom-bg);
+  box-shadow: rgba(3, 3, 3, 0.12) 0px 1px 2px 3px, rgba(3, 3, 3, 0.06) 0px 0px 2px 3px;
   border: 0;
+  border-radius: 8px;
+  outline: 3px solid var(--custom-bg);
+}
+
+table.dashboard span.outer.solid {
+  background-color: inherit;
 }
 
 table.dashboard td.stopgap {
+  height: 2.5rem !important;
   background: none;
 }
 
+table.dashboard tr:first-child > td {
+  padding-top: 20px;
+}
+
+table.dashboard tbody td {
+  padding: 5px 20px;
+}
+
 div.title {
-  background: #ffffff;
+  background: var(--custom-bg);
   letter-spacing: 0.6px;
   border-bottom: 0;
-  margin-bottom: 0.3em;
   box-shadow: rgba(3, 3, 3, 0.12) 0px 1px 2px 0px, rgba(3, 3, 3, 0.06) 0px 0px 2px 0px;
 }
 
-table.disk_status, table.array_status, table.share_status, table.plugins, table.tablesorter, .domain table, table#usb_devices_list, table.samba_mounts, table.usb_absent {
-  background-color: #ffffff;
-  box-shadow: rgba(3, 3, 3, 0.12) 0px 1px 2px 0px, rgba(3, 3, 3, 0.06) 0px 0px 2px 0px;
+table:is(.disk_status, .usb_mounts, .samba_mounts, .usb_absent, .array_status, .share_status, .plugins, .content:has(#docker_containers) table) tr :is(th, td):first-child {
+  padding-left: 20px !important;
+}
+
+table.disk_status tr > td:last-child, table.usb_mounts tr>td, table.samba_mounts tr>td+td {
+  padding-right: 20px !important;
+}
+
+table:is(.disk_status, .usb_mounts, .samba_mounts, .usb_absent, table.share_status) tbody :last-child > td {
+  padding-bottom: 6px;
+}
+
+.content:has(#docker_containers) table td {
+  padding-top: 16px !important;
+  padding-bottom: 16px !important;
+}
+
+div.content:has(#array_devices, #shareslist, #docker_containers) div.title {
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 0;
+}
+
+div.content:has(#array_devices, #shareslist, #docker_containers) div.title:not(.ud, .shift:has(+ #usb_devices_list)), table.plugins {
+  padding: 15px 20px 10px 20px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+table.disk_status, table.share_status, table.plugins, .content:has(#docker_containers) table, table#usb_devices_list, table.samba_mounts, table.usb_absent, form[name="shutdownOps"] > table.array_status {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  overflow: hidden;
+}
+
+div.grid {
+  gap: 2.5rem !important;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+div.pie {
+  height: 84px !important;
+  width: 84px !important;
+}
+
+div.pie ::after {
+  height: 68px !important;
+  width: 68px !important;
 }
 
 table.array_status td.line {
@@ -59,62 +148,72 @@ table.array_status td.line {
 }
 
 /* Tables */
-table.unraid thead tr:first-child > td, table.disk_status tbody tr, table.share_status tbody tr, table.plugins tbody tr, table.tablesorter tbody tr, .domain table tbody tr, table#usb_devices_list tbody tr, table.samba_mounts tbody tr, table.usb_absent tbody tr {
-  background-color: #ffffff !important;
-  border-bottom: 1px solid #e3e3e3;
+table.disk_status, table.share_status, table.plugins, table.tablesorter, table#usb_devices_list, table.samba_mounts, table.usb_absent, table.array_status {
+  background-color: var(--custom-bg);
+  box-shadow: rgba(3, 3, 3, 0.12) 0px 1px 2px 0px, rgba(3, 3, 3, 0.06) 0px 0px 2px 0px;
+}
+
+form[name="arrayOps"] > p, .content:has(#docker_containers) .ToggleViewMode {
+  background-color: var(--custom-bg);
+  box-shadow: rgba(3, 3, 3, 0.12) 0px 1px 2px 0px, rgba(3, 3, 3, 0.06) 0px 0px 2px 0px;
+  margin: 0;
+}
+
+table.unraid thead tr:first-child > td, table.tablesorter thead tr th, table.disk_status tbody tr, table.share_status tbody tr, table.plugins tbody tr, table.tablesorter tbody tr,
+:is(table.usb_mounts, table.samba_mounts, table.usb_absent) :is(tbody tr, thead td) {
+  background-color: inherit !important;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.1);
 }
 
 table#usb_devices_list tbody tr.toggle-disk {
   border-bottom: 0;
 }
 
-table.disk_status:not(.dashboard) tbody tr:hover td, table.share_status:not(.dashboard) tbody tr:hover td {
+table.disk_status:not(.dashboard) tbody tr:hover td, table.share_status:not(.dashboard) tbody tr:hover td, table.usb_mounts tbody tr:hover td {
   background-color: rgba(46, 66, 106, 0.05) !important;
 }
 
 
 /* Buttons */
-
-input[type=button], input[type=reset], input[type=submit], button.mount, a.button,
+input[type=button], input[type=reset], input[type=submit], button.mount, #remotes-buttons > button, button#default-button, button#clear-button, a.button,
 .sa-button-container button, .ui-dialog-buttonpane .ui-dialog-buttonset button, button.swal-button {
-  color: #ffa660;
+  color: var(--button-text-color);
   letter-spacing: 0px;
-  border-radius: 3px;
+  border-radius: 6px;
   font-size: 1.5rem;
   font-weight: normal;
   text-transform: none;
-  background: #ffffff;
-  padding: 6px 16px;
-  outline: 2px solid #ffa660;
-  outline-offset: -2px;
+  padding: 4px 14px;
+  border: 2px solid transparent;
+  background: initial;
+  background-image: linear-gradient(var(--custom-bg), var(--custom-bg)), linear-gradient(90deg, var(--brand-red) 0, var(--brand-orange));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
   box-shadow: rgba(3, 3, 3, 0.12) 0px 1px 2px 0px, rgba(3, 3, 3, 0.06) 0px 0px 2px 0px;
 }
 
-input[name="#apply"], input[value="Apply"], input[value="应用"],
+input[name="#apply"], input[value="Apply"], input[value="应用"], input[value="Save"], input[value="保存"],
 .sa-confirm-button-container button, .ui-dialog-buttonset button:first-child, button.swal-button--next {
-  color: #ff6f00;
-  outline-color: #ff8425;
+  color: var(--brand-red);
 }
 
-input[type=button]:hover, input[type=reset]:hover, input[type=submit]:hover, button.mount:hover, a.button:hover,
-.sa-button-container button:hover, .ui-dialog-buttonset button:hover, button:hover.swal-button, .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset button:hover {
-  color: #ffffff;
-  outline: 0;
-  background: linear-gradient(90deg, #e22828 0, #ff8c2f);
+:is(input[type=button], input[type=reset], input[type=submit], button.mount, #remotes-buttons > button, button#default-button, button#clear-button, a.button,
+.sa-confirm-button-container button, .ui-dialog-buttonset button:first-child, button.swal-button--next):hover {
+  color: var(--hover-button-text-color);
+  background: linear-gradient(90deg, var(--brand-red) 0, var(--brand-orange)) border-box;
 }
 
-input[type=button]:active, input[type=reset]:active, input[type=submit]:active, button.mount:active, a.button:active,
-.sa-button-container button:active, .ui-dialog-buttonset button:active, button:active.swal-button, .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset button:active {
-  color: #ffffff;
-  outline: 0;
-  background: linear-gradient(90deg, #b11e1e 0, #ca6f24);
+:is(input[type=button], input[type=reset], input[type=submit], button.mount, #remotes-buttons > button, button#default-button, button#clear-button, a.button,
+.sa-confirm-button-container button, .ui-dialog-buttonset button:first-child, button.swal-button--next):active {
+  color: var(--custom-bg);
+  opacity: 0.8;
 }
 
-input[type=button][disabled], input[type=reset][disabled], input[type=submit][disabled], button.mount[disabled], a.button[disabled],
-.sa-button-container button[disabled], .ui-dialog-buttonset button[disabled], button[disabled].swal-button {
-  color: #909090;
+:is(input[type=button], input[type=reset], input[type=submit], button.mount, #remotes-buttons > button, button#default-button, button#clear-button, a.button,
+.sa-confirm-button-container button, .ui-dialog-buttonset button:first-child, button.swal-button--next)[disabled] {
+  color: var(--disabled-text-color);
   background: transparent;
-  outline: 2px solid #909090;
+  border: 2px solid var(--disabled-border-color);
   opacity: 0.5;
   box-shadow: none;
 }
@@ -124,7 +223,7 @@ input[type=button][disabled], input[type=reset][disabled], input[type=submit][di
 .PanelText {
   width: 100px;
   padding-bottom: 3px;
-  color: #212121;
+  color: var(--text-color);
 }
 
 div.Panel:hover .PanelText {
@@ -134,9 +233,8 @@ div.Panel:hover .PanelText {
 
 
 /* Users */
-
 div.user-list {
-  background-color: #ffffff;
+  background-color: var(--custom-bg);
   border: 0;
   border-radius: 0;
   box-shadow: rgba(3, 3, 3, 0.12) 0px 1px 2px 0px, rgba(3, 3, 3, 0.06) 0px 0px 2px 0px;
@@ -144,7 +242,7 @@ div.user-list {
 }
 
 div.user-list > a {
-  color: #212121;
+  color: var(--text-color);
 }
 
 div.user-list > a:hover {
