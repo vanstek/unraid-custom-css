@@ -2,7 +2,7 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "custom.css">
 <!ENTITY author    "Wu23333">
-<!ENTITY version   "2025.11.29">
+<!ENTITY version   "2025.11.29a">
 <!ENTITY launch    "Settings/CustomCSS">
 <!ENTITY pluginURL "https://github.com/WuSiYu/unraid-custom-css/raw/refs/heads/master/custom.css.plg">
 ]>
@@ -21,7 +21,7 @@
 - Added Enable/Disable dropdown menu.
 
 ## 2025.11.22
-- Inital release.
+- Initial release.
 </CHANGES>
 
 <FILE Run="/bin/bash">
@@ -70,6 +70,10 @@ if ($_POST) {
     if (isset($_POST['SAVE_CONFIG'])) {
         // 1. Handle Enable/Disable Logic
         $service_state = $_POST['SERVICE'] ?? "disabled";
+        // Only allow "enabled" or "disabled" values
+        if (!in_array($service_state, ["enabled", "disabled"])) {
+            $service_state = "disabled";
+        }
         file_put_contents($cfg_path, 'SERVICE="' . $service_state . '"');
 
         // 2. Handle CSS Save Logic (Main)
@@ -178,7 +182,7 @@ _(Additional CSS for Black Theme)_:
     <strong>Unraid CSS Variables:</strong><br/>
     e.g. <code>var(--background-color)</code>, <code>var(--text-color)</code>, <code>var(--button-text-color)</code>, <code>var(--red-500)</code><br/>
     <br/>
-    You can ovrerride these variables to change the overall colors:<br/>
+    You can override these variables to change the overall colors:<br/>
     <code>:root { --background-color: #f6f9ff; }</code><br/>
     You can also leverage them when styling elements:<br/>
     <code>div.title { border-bottom: 2px solid var(--text-color); }</code><br/>
