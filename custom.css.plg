@@ -21,7 +21,7 @@
 - Added Enable/Disable dropdown menu.
 
 ## 2025.11.22
-- Inital release.
+- Initial release.
 </CHANGES>
 
 <FILE Run="/bin/bash">
@@ -68,8 +68,12 @@ require_once "$docroot/plugins/dynamix/include/Wrappers.php";
 
 if ($_POST) {
     if (isset($_POST['SAVE_CONFIG'])) {
-        // 1. Handle Enable/Disable Logic
+        // 1. Handle Enable/Disable Logic (with input validation)
         $service_state = $_POST['SERVICE'] ?? "disabled";
+        // Only allow "enabled" or "disabled" values
+        if (!in_array($service_state, ["enabled", "disabled"])) {
+            $service_state = "disabled";
+        }
         file_put_contents($cfg_path, 'SERVICE="' . $service_state . '"');
 
         // 2. Handle CSS Save Logic (Main)
@@ -94,6 +98,10 @@ if ($_POST) {
             $size = trim(shell_exec("du -sh " . escapeshellarg($assets_target) . "assets | cut -f1"));
             $msg = "Assets synced successfully (Flash drive -> Web), size: $size.";
         } else {
+            // Create the assets folder if it doesn't exist
+            mkdir($assets_source, 0755, true);
+            shell_exec("rm -rf " . escapeshellarg($assets_target) . "assets");
+            shell_exec("cp -r " . escapeshellarg($assets_source) . " " . escapeshellarg($assets_target));
             $msg = "Assets folder not found on Flash drive, created an empty one.";
         }
     }
@@ -178,7 +186,7 @@ _(Additional CSS for Black Theme)_:
     <strong>Unraid CSS Variables:</strong><br/>
     e.g. <code>var(--background-color)</code>, <code>var(--text-color)</code>, <code>var(--button-text-color)</code>, <code>var(--red-500)</code><br/>
     <br/>
-    You can ovrerride these variables to change the overall colors:<br/>
+    You can override these variables to change the overall colors:<br/>
     <code>:root { --background-color: #f6f9ff; }</code><br/>
     You can also leverage them when styling elements:<br/>
     <code>div.title { border-bottom: 2px solid var(--text-color); }</code><br/>
