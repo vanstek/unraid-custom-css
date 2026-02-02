@@ -9,7 +9,7 @@ Note that this plugin is **NOT** a replacement for Theme Engine, it just provide
 ## Install
 Navigate to Plugins -> Install Plugin and input this URL:
 ```
-https://github.com/WuSiYu/unraid-custom-css/raw/refs/heads/master/custom.css.plg
+https://github.com/vanstek/unraid-custom-css/raw/refs/heads/master/custom.css.plg
 ```
 
 
